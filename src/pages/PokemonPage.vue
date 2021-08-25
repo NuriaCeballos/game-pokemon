@@ -1,28 +1,40 @@
 <template>
   <div>
       <h1>¿Quién es este pokémon?</h1>
-       <PokemonPicture :pokemonId="4" :showPokemon="true"/>
-      <PokemonOptions/>
+       <PokemonPicture :pokemonId="251" :showPokemon="true"/>
+       <PokemonOptions :pokemons="pokemonArr"/>
  
   </div>
 </template>
 
 <script>
-
-import getPokemonOptions from '@/helpers/getPokemonOptions'
 import PokemonOptions from '@/components/PokemonOptions'
-
 import PokemonPicture from '@/components/PokemonPicture'
+import getPokemonOptions from '@/helpers/getPokemonOptions.js'
 
-console.log(getPokemonOptions())
+console.log(getPokemonOptions(),'hola')
 
 export default {
-  name: 'PokemonPage',
-  components: { 
-    PokemonPicture,
-    PokemonOptions
-    
-  }
+  
+  components: {PokemonPicture,PokemonOptions},
+
+  data(){
+    return{
+      pokemonArr:[]
+    }
+  },
+    methods:{
+ async mixPokemonArray(){
+  this.pokemonArr = await getPokemonOptions()
+  
+}
+    },
+      mounted(){
+        
+        this.mixPokemonArray()
+        
+      
+      }
 }
 </script>
 

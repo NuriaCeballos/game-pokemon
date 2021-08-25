@@ -1,4 +1,4 @@
-import pokemonApi from "../api/pokemonApi" 
+import pokemonApi from "@/api/pokemonApi" 
 
 const getPokemons = ()=>{
 
@@ -12,13 +12,13 @@ const getPokemonOptions = async ()=>{
     const mixedPokemons = getPokemons().sort(()=>Math.random()-0.5)
     const pokemons= await getPokemonNames (mixedPokemons.splice(0,4))
 
-      console.table(pokemons)
+    return pokemons
 
 }
 
 const getPokemonNames= async ([a,b,c,d])=>{
 
-   const resp = await pokemonApi.get(`/1`)
+//    const resp = await pokemonApi.get(`/1`)
     // console.log(resp.data.name)
     // console.log(a,b,c,d)
     const promiseArr = [

@@ -2,7 +2,13 @@
 <div class="option-container">
   <ul>
     <li v-for="pokemon in pokemons"
-     :key="pokemon.id" >
+     :key="pokemon.id" 
+     @click="$emit('selection',pokemon.id)"> 
+     <!-- en este click emite un valor al padre  emit tiene dos argumentos
+     el nombre el  evento que se quiere distarar y es obligatorio en el segundo mandamos
+     el pokemon que ha seleccionado al hacer click que va a caer como primer argumento en el 
+     selection del padre en checkAnswer-->
+       
      {{  pokemon.name }}
      </li>
   </ul>

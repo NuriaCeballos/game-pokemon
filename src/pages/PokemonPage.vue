@@ -5,8 +5,14 @@
       <h1>¿Quién es este pokémon?</h1>
        <PokemonPicture :pokemonId="pokemon.id" :showPokemon="showPokemon"/>
        <PokemonOptions :pokemons="pokemonArr"
-       @selection="checkAnswer"/><!-- aquí el padre esta escuchando cuando se emite selection-->
+       @selection="checkAnswer($event)"/><!-- aquí el padre esta escuchando cuando se emite selection-->
+       <!-- si no se ponen los argumentos no pasa nada $event es el segundo argumento -->
  
+  <h2>{{messege}}</h2>
+  <button @click="newGame">
+    nuevo juego</button>
+
+
   </div>
   </div>
   
@@ -28,7 +34,9 @@ export default {
     return{
       pokemonArr:[],
       pokemon:null,
-      showPokemon: false
+      showPokemon: false,
+      showAnswer: false,
+      messege:''
      
     }
   },
@@ -38,14 +46,25 @@ export default {
   
   const rndInt = Math.floor(Math.random()*4)
   this.pokemon = this.pokemonArr [ rndInt]
-  console.log(rndInt)
   
 },
-checkAnswer(){
+checkAnswer(pokemonId){//aquí recibe el evento que es el segundo argumento que recibe
+//arriba en selection el checkAnswer
+this.showPokemon=true
 
-  console.log('Pokemosn Page llamado');
-
+if (pokemonId === this.pokemonId){
+  this.messege = `Correcto,${this.pokemon.name}`
+}else {
+  this.messege = `OopSS no es ${this.pokemon.name}`
 }
+},
+newGame(){
+  
+   
+  console.log("va el boton")
+  
+}
+
 
     },
       mounted(){
